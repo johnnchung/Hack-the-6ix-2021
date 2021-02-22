@@ -43,13 +43,19 @@ body {
     color: #1ebba3;
 }
 
-
+.circle{
+    transition: .2s ease-in-out;
+  }
+  
+  .circle:hover{
+    transform: scale(1.2);
+  }
 
 
 /*--- Start of Landing Page CSS --*/
 
 .home-inner {
-    background-image: url(img/computers.png);
+    background-image: url(img/homepage.png);
 }
 
 .caption {
@@ -163,7 +169,7 @@ h3.heading{
 /*-- Projects Section --*/
 
 .fixed{
-    background-image: url(img/apple.png);
+    background-image: url(img/homepage.png);
     z-index:-1;
 }
 
