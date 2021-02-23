@@ -140,6 +140,15 @@ body {
     font-size: 1.6rem;
 }
 
+.narrow h1, h2, h3{
+    font-weight: 700;
+}
+
+.lead2{
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
 .btn-secondary {
     border-width: medium;
     border-radius: 0;
