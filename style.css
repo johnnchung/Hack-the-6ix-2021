@@ -289,6 +289,12 @@ hr.socket {
 /*-- Media Queries --*/
 
 @media (max-width: 767px) {
+    .caption {
+        margin-top: -100px;
+
+    }
+
+
     .caption h1 {
         font-size: 2.3rem;
         letter-spacing: .15rem;
@@ -311,6 +317,13 @@ hr.socket {
         max-width: 50%;
         display: block;
         margin: 0 auto;
+    }
+
+    .profile {
+        transform: scale(0.5, 0.5);
+        -ms-transform: scale(0.5, 0.5);
+        -webkit-transform: scale(0.5, 0.5);
+
     }
 }
 
