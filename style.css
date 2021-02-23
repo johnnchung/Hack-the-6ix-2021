@@ -65,12 +65,21 @@ body {
     top: 38%;
     z-index: 1;
     color: white;
+    margin-top: 50px;
 }
 
 .caption h1 {
     font-size: 3.8rem;
     font-weight: 700;
     letter-spacing: .3rem;
+    text-shadow: .1rem .1rem .8rem black;
+    padding-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.caption h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
     text-shadow: .1rem .1rem .8rem black;
     padding-bottom: 1rem;
     text-transform: uppercase;
@@ -92,7 +101,27 @@ body {
     font-size: 1.1rem;
 }
 
+.profile img{
+    transition: .2s ease-in-out;
+    margin-top: -350px;
+    border-radius: 50%;
+    -o-box-shadow:      12px 12px 29px #555;
+    -icab-box-shadow:   12px 12px 29px #555;
+    -khtml-box-shadow:  12px 12px 29px #555;
+    -moz-box-shadow:    12px 12px 29px #555;
+    -webkit-box-shadow: 12px 12px 29px #555;
+    box-shadow:         12px 12px 29px #555;
+}
 
+.profile img:hover {
+    transform: scale(1.1);
+    -o-box-shadow:      12px 12px 29px #555;
+    -icab-box-shadow:   12px 12px 29px #555;
+    -khtml-box-shadow:  12px 12px 29px #555;
+    -moz-box-shadow:    12px 12px 29px #555;
+    -webkit-box-shadow: 12px 12px 29px #555;
+    box-shadow:         12px 12px 29px #555;
+}
 
 
 /*-- Course Section --*/
@@ -104,7 +133,11 @@ body {
 }
 
 .narrow h1{
-    font-size: 2.4rem;
+    font-size: 1.6rem;
+}
+
+.narrow h2{
+    font-size: 1.6rem;
 }
 
 .btn-secondary {
@@ -203,6 +236,11 @@ blockquote .svg-inline--fa{
 
 .education-hr {
     border-top: .05rem solid #1ebba3;
+}
+
+.education-text {
+    font-size: 0.9rem;
+    color: black;
 }
 
 
