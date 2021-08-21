@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 import whois
 
 
+
 def NosOfSubdomain(string):
     split = string.split('.')
     if('/' not in string):
