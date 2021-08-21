@@ -8,9 +8,9 @@ from goose import Goose
 from cursor import Cursor
 
 
-IM_PATH = 'C:\\Users\\chera\\Cheran\\Programming\\memes\\animations\\'
-HEIGHT = 350
-WIDTH = 350
+IM_PATH = 'C:\\Users\\chera\\Cheran\\GitHub\\Hack-the-6ix-2021\\animations\\'
+HEIGHT = 200
+WIDTH = 200
 
 
 class Companion_Gui:
@@ -39,18 +39,19 @@ class Companion_Gui:
 
 if __name__ == "__main__":
     window = tk.Tk()
-    #window.config(highlightbackground='black')
-    #window.overrideredirect(True)
-    #window.wm_attributes('-transparentcolor','black')
+    # window.config(highlightbackground='black')
+    # window.overrideredirect(True)
+    # window.wm_attributes('-transparentcolor','black')
 
     x, y = mouse.get_position()
     cursor = Cursor(x, y)
 
     idle_animation = Animation(IM_PATH + 'idle.gif').frames
-    run_animation = Animation(IM_PATH + 'goose.gif').frames
+    right_animation = Animation(IM_PATH + 'Duck_right.gif').frames
+    left_animation = Animation(IM_PATH + 'Duck_left.gif').frames
     up_animation = Animation(IM_PATH + 'up.gif').frames
-    down_animation = Animation(IM_PATH + 'down.gif').frames
-    goose = Goose(x, y, idle_animation, run_animation, up_animation, down_animation)
+    down_animation = Animation(IM_PATH + 'Duck_down.gif').frames
+    goose = Goose(x, y, idle_animation, right_animation, left_animation, up_animation, down_animation)
 
     gui = Companion_Gui(window, goose, cursor)
     gui.play()
