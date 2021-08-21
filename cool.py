@@ -28,7 +28,7 @@ def searchLinks():
 
 if __name__ == "__main__":
     set_interval(5)
-    # pyautogui.click(0, 200)
+    pyautogui.click(0, 200)
     # pyautogui.press('f6')
     # pyautogui.hotkey('ctrl', 'c')
     # pyautogui.press('f6')

@@ -1,14 +1,16 @@
 import pyautogui
 import mouse
+import os
 import tkinter as tk
 from PIL import Image, ImageTk
 
 from animation import Animation
 from goose import Goose
 from cursor import Cursor
+from state import State
 
 
-IM_PATH = 'C:\\Users\\chera\\Cheran\\GitHub\\Hack-the-6ix-2021\\animations\\'
+IM_PATH = os.getcwd() + "\\..\\animations\\"
 HEIGHT = 200
 WIDTH = 200
 
@@ -36,7 +38,6 @@ class Companion_Gui:
         self.label.pack()
         self.window.after(1, self.update_state)
 
-
 if __name__ == "__main__":
     window = tk.Tk()
     # window.config(highlightbackground='black')
@@ -46,10 +47,10 @@ if __name__ == "__main__":
     x, y = mouse.get_position()
     cursor = Cursor(x, y)
 
-    idle_animation = Animation(IM_PATH + 'idle.gif').frames
+    idle_animation = Animation(IM_PATH + 'Duck_idle.gif').frames
     right_animation = Animation(IM_PATH + 'Duck_right.gif').frames
     left_animation = Animation(IM_PATH + 'Duck_left.gif').frames
-    up_animation = Animation(IM_PATH + 'up.gif').frames
+    up_animation = Animation(IM_PATH + 'Duck_up.gif').frames
     down_animation = Animation(IM_PATH + 'Duck_down.gif').frames
     goose = Goose(x, y, idle_animation, right_animation, left_animation, up_animation, down_animation)
 

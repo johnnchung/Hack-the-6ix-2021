@@ -25,16 +25,12 @@ class Goose:
             self.check = 0
         elif self.event_number == State.RUN_LEFT_EVENT:
             self.check = 1
-            print('walking left')
         elif self.event_number == State.RUN_RIGHT_EVENT:
             self.check = 2
-            print('walking right')
         elif self.event_number == State.RUN_UP_EVENT:
             self.check = 3
-            print('walking up')
         elif self.event_number == State.RUN_DOWN_EVENT:
             self.check = 4
-            print('walking down')
 
     def gif_work(self, frames, cursor_x, cursor_y):
         if self.cycle < len(frames) - 1:
@@ -109,7 +105,7 @@ class Goose:
             self.x_increment = 0
             self.y_increment = -DUCK_SPEED
             return State.RUN_UP_EVENT
-        
+
         return State.IDLE_EVENT
 
     def is_in_hitbox(self, cursor_x, cursor_y, buffer):
