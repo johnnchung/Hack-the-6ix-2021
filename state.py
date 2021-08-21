@@ -1,0 +1,8 @@
+class State:
+
+    IDLE_EVENT = 0
+    RUN_LEFT_EVENT = 1
+    RUN_RIGHT_EVENT = 2
+    RUN_UP_EVENT = 3
+    RUN_DOWN_EVENT = 4
+    MOUSE_DIGESTION_EVENT = 5
