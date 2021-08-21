@@ -17,6 +17,7 @@ from sklearn.linear_model import LogisticRegression
 import joblib
 
 df = pd.read_csv('phishing_site_urls.csv')
+tokenizer = RegexpTokenizer(r'[A-Za-z]+')
 df['text_tokenized'] = df.URL.map(lambda t: tokenizer.tokenize(t))
 
 root_words = SnowballStemmer("english")
