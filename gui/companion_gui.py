@@ -2,7 +2,6 @@ import pyautogui
 import mouse
 import os
 import tkinter as tk
-
 from PIL import Image, ImageTk
 
 from animation import Animation
