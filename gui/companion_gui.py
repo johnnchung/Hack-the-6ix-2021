@@ -9,7 +9,7 @@ from gui.duck import Duck
 from gui.cursor import Cursor
 from gui.state import State
 
-HEIGHT = 220
+HEIGHT = 200
 WIDTH = 200
 
 class Companion_Gui:
