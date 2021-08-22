@@ -1,8 +1,5 @@
 import requests
-import pyautogui
-import pyperclip
 from bs4 import BeautifulSoup
-import json
 
 def scrape_page(url):
 
@@ -24,19 +21,6 @@ def scrape_page(url):
                 
             links.append(a['href'])
             
-           
-    # json_format = json.dumps(links)
-    
+        
     return links
-
-
-    # print(json_format)
-
-# scrape_page("https://stackoverflow.com") 
-
-# def remove_href(links): #to send to cloud functions
-#     for a in links: 
-#         a.removeprefix('https://')
-# print(json.dumps(links))
-# remove_href(links)
 

@@ -1,11 +1,10 @@
-from state import State
+from gui.state import State
 import pyautogui
 import mouse
 
 WIDTH = 200
 HEIGHT = 220
 DUCK_SPEED = 20
-
 
 class Duck:
     def __init__(self, pos_x, pos_y, idle_anim, right_anim, left_anim, up_anim, down_anim, digest_left_anim,
@@ -28,8 +27,9 @@ class Duck:
         self.y_increment = 0
         self.digestion_stage = 0
         self.repetitions = 0
-        self.is_hiding = False
-
+        self.is_hiding = True
+ 
+    
     def movement_state(self):
         if self.event_number == State.IDLE_EVENT:
             self.check = 0
@@ -222,5 +222,6 @@ class Duck:
         else:
             return False
 
-    def control_mouse(self, cursor, direction):
+    def control_mouse(self, cursor):
+
         pass
