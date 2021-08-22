@@ -13,13 +13,15 @@ HEIGHT = 200
 WIDTH = 200
 
 class Companion_Gui:
-    def __init__(self, window, pipeline, duck, cursor, window1):
+    def __init__(self, window, pipeline, duck, cursor, window1, image):
         self.window = window
         self.pipeline = pipeline
         self.duck = duck
         self.cursor = cursor
         self.label = tk.Label(self.window, bd=0, bg='black')
-        self.window1 = window1   
+        self.window1 = window1
+        self.label1 = tk.Label(self.window1, bd=0, bg='black')
+        self.image = image
 
     def play(self):
         self.window.after(1, self.update_frame)
@@ -44,8 +46,9 @@ class Companion_Gui:
         frame = self.duck.update_window(self.cursor.pos_x, self.cursor.pos_y)
         self.window.geometry(str(HEIGHT) + 'x' + str(WIDTH) + "+" + str(self.duck.pos_x) + '+' + str(self.duck.pos_y))
 
-        self.window1.geometry("50x50" + '+' + str(self.duck.disappear_X - 40) + '+' + str(self.duck.disappear_Y))
+        self.window1.geometry("50x50" + '+' + str(self.duck.disappear_X - 40) + '+' + str(self.duck.disappear_Y - 40))
         self.label.configure(image=frame)
+        self.label1.configure(image=self.image)
         self.label.pack()
+        self.label1.pack()
         self.window.after(1, self.update_state)
-        

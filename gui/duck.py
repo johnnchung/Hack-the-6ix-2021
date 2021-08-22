@@ -28,14 +28,10 @@ class Duck:
         self.y_increment = 0
         self.digestion_stage = 0
         self.repetitions = 0
-<<<<<<< HEAD
-        self.is_hiding = False
+        self.is_hiding = True
         self.mouse_disappear = False
         self.disappear_X = -100
         self.disappear_Y = -100
-=======
-        self.is_hiding = True
->>>>>>> 060e5afbc820c8ea382458b13adcac5d0981f558
  
     def movement_state(self):
         if self.event_number == State.IDLE_EVENT:
@@ -66,7 +62,6 @@ class Duck:
             self.check = 12
 
     def gif_work(self, frames, cursor_x, cursor_y):
-
         if self.event_number == State.WARNING_ANIMATION and self.cycle == len(frames) - 1: 
             self.event_number = State.RUN_RIGHT_EVENT
             self.check = 2
@@ -74,6 +69,8 @@ class Duck:
         if self.event_number in [State.MOUSE_POOP_LEFT_EVENT, State.MOUSE_POOP_RIGHT_EVENT] and self.cycle == len(frames) - 1:
             self.digestion_stage = 0
             self.event_number = State.HIDING_EVENT
+            self.disappear_X = -100
+            self.disappear_Y = -100
             self.is_hiding = True
 
         if self.event_number in [State.MOUSE_DIGESTION_LEFT_EVENT, State.MOUSE_DIGESTION_RIGHT_EVENT] and self.cycle == len(frames) - 1:
@@ -163,6 +160,7 @@ class Duck:
         return frame
 
     def orientation(self, cursor_x, cursor_y, buffer):
+        print(self.disappear_X, self.disappear_Y)
         if self.event_number == State.WARNING_ANIMATION:
             self.x_increment = 0
             self.y_increment = 0
@@ -208,7 +206,6 @@ class Duck:
             self.y_increment = 0
             self.mouse_disappear = False
             return self.event_number
-
 
         if cursor_x > self.pos_x + WIDTH + buffer and cursor_y < self.pos_y:
             self.x_increment = DUCK_SPEED
