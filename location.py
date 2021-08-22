@@ -66,8 +66,8 @@ def find_location(url, bad_links):
         a = 1920
         b = 1040
         c = 115
-        pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1)
-        pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1) #account for user screen size
+        # pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1)
+        # pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1) #account for user screen size
 
         (x, y) = (round(location['x']*1920/a), round((location['y'] + c)*1080/b)) # or floor
         #x = x - 1
