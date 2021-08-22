@@ -54,8 +54,8 @@ if __name__ == "__main__":
     down_animation = Animation(IM_PATH + 'Duck_down.gif').frames
     eat_right_animation = Animation(IM_PATH + 'Duck_eat_right.gif').frames
     eat_left_animation = Animation(IM_PATH + 'Duck_eat_left.gif').frames
-    poop_left_animation = Animation(IM_PATH + 'Duck_poop_left_2.gif').frames
-    poop_right_animation = Animation(IM_PATH + 'Duck_poop_right_2.gif').frames
+    poop_left_animation = Animation(IM_PATH + 'Duck_poop_left.gif').frames
+    poop_right_animation = Animation(IM_PATH + 'Duck_poop_right.gif').frames
     duck = Duck(x, y, idle_animation, right_animation, left_animation, up_animation, down_animation,
                 eat_left_animation, eat_right_animation, poop_left_animation, poop_right_animation)
 
