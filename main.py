@@ -7,6 +7,21 @@ from cloud_fetch import cloud_response
 
 from location import find_location 
 
+from companion_gui import Companion_Gui
+
+if __name__ == "__main__":
+    url = "https://www.stackoverflow.com/"
+    
+    links = scrape_page(url)
+    phishing_results = cloud_response(links)
+    
+    bad_links = [] 
+    for index in range(len(phishing_results)): 
+        if phishing_results[index] == 'bad':
+            bad_links.append(links[index]) 
+        
+    link_coordinate_array = find_location(url, bad_links) 
+    
 def app(): 
     
     # loop every 5 seconds 

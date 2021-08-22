@@ -25,6 +25,11 @@ class Link_Class:
         self.right_bottom = right_bottom_corner
         self.left_bottom = left_bottom_corner
         self.right_top = right_top_corner
+
+    def checkBox(self, cursor_x, cursor_y):
+        if(self.left_top[0] < cursor_x < self.right_top[0] and self.left_bottom[1] < cursor_y < self.left_top[1]):
+            return True
+        return False
         
     
 def find_location(url, bad_links): 
@@ -60,12 +65,10 @@ def find_location(url, bad_links):
         except: 
             continue
 
-        #a = browser.execute_script("return outerWidth")
-        #c = browser.execute_script("return outerHeight - innerHeight")
-        #b = browser.execute_script("return outerHeight")
-        a = 1920
-        b = 1040
-        c = 115
+        a = browser.execute_script("return outerWidth")
+        c = browser.execute_script("return outerHeight - innerHeight")
+        b = browser.execute_script("return outerHeight")
+
         # pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1)
         # pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1) #account for user screen size
 
