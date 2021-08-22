@@ -28,8 +28,9 @@ if __name__ == "__main__":
     eat_left_animation = Animation(IM_PATH + 'Duck_eat_left.gif').frames
     poop_left_animation = Animation(IM_PATH + 'Duck_poop_left2.gif').frames
     poop_right_animation = Animation(IM_PATH + 'Duck_poop_right2.gif').frames
+    poop_warning_animation = Animation(IM_PATH + 'Duck_warning.gif').frames
     duck = Duck(50, 50, idle_animation, right_animation, left_animation, up_animation, down_animation,
-                eat_left_animation, eat_right_animation, poop_left_animation, poop_right_animation)
+                eat_left_animation, eat_right_animation, poop_left_animation, poop_right_animation, poop_warning_animation)
 
     pipeline = Pipeline(5, cursor)
     gui = Companion_Gui(window, pipeline, duck, cursor)
