@@ -167,6 +167,16 @@ body {
     border-color:   #189582;
 }
 
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 33.33%;
+    padding: 5px;
+}
+  
+
 
 
 
@@ -206,14 +216,17 @@ h3.heading{
 }
 
 .experiences-img {
-    width: 300px;
-    float: left;
+    width: 270px;
     margin-right: 20px;
+    border: 2px solid;
 }
 .experiences p{
     font-size: 1.1rem;
 }
 
+.txt {
+    font-size: 20px;
+}
 
 
 
