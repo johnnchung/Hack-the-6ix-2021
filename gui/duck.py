@@ -8,7 +8,7 @@ DUCK_SPEED = 20
 
 class Duck:
     def __init__(self, pos_x, pos_y, idle_anim, right_anim, left_anim, up_anim, down_anim, digest_left_anim,
-                 digest_right_anim, poop_left_anim, poop_right_anim):
+                 digest_right_anim, poop_left_anim, poop_right_anim, mouse_disappear ):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.idle_anim = idle_anim
@@ -28,6 +28,7 @@ class Duck:
         self.digestion_stage = 0
         self.repetitions = 0
         self.is_hiding = True
+        self.mouse_disappear = False 
  
     def movement_state(self):
         if self.event_number == State.IDLE_EVENT:
@@ -73,8 +74,8 @@ class Duck:
                 self.event_number = State.MOUSE_POOP_LEFT_EVENT
             else:
                 self.event_number = State.MOUSE_POOP_RIGHT_EVENT
-            self.digestion_stage = 2
-            self.repetitions = 0
+                self.digestion_stage = 2
+                self.repetitions = 0
 
         if self.event_number in [State.MOUSE_CONSTIPATION_LEFT_EVENT, State.MOUSE_CONSTIPATION_RIGHT_EVENT] and self.cycle == len(frames) - 1:
             self.repetitions += 1
@@ -96,6 +97,7 @@ class Duck:
         if self.check == 0:
             frame = self.idle_anim[self.cycle]
             self.gif_work(self.idle_anim, cursor_x, cursor_y)
+
         elif self.check == 1:
             frame = self.left_anim[self.cycle]
             self.gif_work(self.left_anim, cursor_x, cursor_y)
@@ -143,7 +145,7 @@ class Duck:
             self.gif_work(self.idle_anim, cursor_x, cursor_y)
         return frame
 
-    def orientation(self, cursor_x, cursor_y, buffer):
+    def orientation(self, cursor_x, cursor_y, buffer, mouse_disappear):
         if self.is_hiding:
             if self.pos_x > 200:
                 self.x_increment = -DUCK_SPEED
@@ -155,6 +157,7 @@ class Duck:
             return State.HIDING_EVENT
 
         if self.digestion_stage == 0 and self.is_in_hitbox(cursor_x, cursor_y, buffer):
+            self.mouse_disappear = True 
             self.x_increment = 0
             self.y_increment = 0
             if self.pos_x > cursor_x:
@@ -174,7 +177,9 @@ class Duck:
         if self.digestion_stage == 2:
             self.x_increment = 0
             self.y_increment = 0
+            self.mouse_disappear = False
             return self.event_number
+
 
         if cursor_x > self.pos_x + WIDTH + buffer and cursor_y < self.pos_y:
             self.x_increment = DUCK_SPEED
@@ -220,3 +225,5 @@ class Duck:
     def on_hover(self, cursor):
         print ("Hi")
         self.is_hiding = False
+
+   

@@ -13,12 +13,16 @@ HEIGHT = 220
 WIDTH = 200
 
 class Companion_Gui:
-    def __init__(self, window, pipeline, duck, cursor):
+    def __init__(self, window, pipeline, duck, cursor, window1):
         self.window = window
         self.pipeline = pipeline
         self.duck = duck
         self.cursor = cursor
         self.label = tk.Label(self.window, bd=0, bg='black')
+    
+    def mouse_disappear(self):
+        self.window1 = tk.Toplevel(self)
+        tk.config(cursor='none')
 
     def play(self):
         self.window.after(1, self.update_frame)
