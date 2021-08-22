@@ -60,6 +60,7 @@ class Duck:
         if self.event_number in [State.MOUSE_POOP_LEFT_EVENT, State.MOUSE_POOP_RIGHT_EVENT] and self.cycle == len(frames) - 1:
             self.digestion_stage = 0
             self.event_number = State.IDLE_EVENT
+            self.is_hiding = True
 
         if self.event_number in [State.MOUSE_DIGESTION_LEFT_EVENT, State.MOUSE_DIGESTION_RIGHT_EVENT] and self.cycle == len(frames) - 1:
             if self.event_number == State.MOUSE_DIGESTION_LEFT_EVENT:
@@ -139,8 +140,8 @@ class Duck:
         elif self.check == 11:
             self.pos_x += self.x_increment
             self.pos_y += self.y_increment
-            frame = self.left_anim[self.cycle]
-            self.gif_work(self.left_anim, cursor_x, cursor_y)
+            frame = self.idle_anim[self.cycle]
+            self.gif_work(self.idle_anim, cursor_x, cursor_y)
         return frame
 
     def orientation(self, cursor_x, cursor_y, buffer):
@@ -150,12 +151,12 @@ class Duck:
         #     return State.IDLE_EVENT
 
         if self.is_hiding:
-            if self.pos_x > -100:
+            if self.pos_x > 200:
                 self.x_increment = -DUCK_SPEED
             else:
                 self.x_increment = 0
             
-            if self.pos_y > -100:
+            if self.pos_y > 200:
                 self.y_increment = DUCK_SPEED
             return State.HIDING_EVENT
 
@@ -222,6 +223,5 @@ class Duck:
         else:
             return False
 
-    def control_mouse(self, cursor):
-
-        pass
+    def on_hover(self, cursor):
+        self.is_hiding = False

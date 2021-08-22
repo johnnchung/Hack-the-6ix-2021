@@ -11,6 +11,7 @@ IM_PATH = os.getcwd() + "\\animations\\"
     
 if __name__ == "__main__":
     window = tk.Tk()
+    window.attributes("-topmost", True)
     # window.config(highlightbackground='black')
     # window.overrideredirect(True)
     # window.wm_attributes('-transparentcolor','black')
@@ -27,7 +28,7 @@ if __name__ == "__main__":
     eat_left_animation = Animation(IM_PATH + 'Duck_eat_left.gif').frames
     poop_left_animation = Animation(IM_PATH + 'Duck_poop_left2.gif').frames
     poop_right_animation = Animation(IM_PATH + 'Duck_poop_right2.gif').frames
-    duck = Duck(x, y, idle_animation, right_animation, left_animation, up_animation, down_animation,
+    duck = Duck(50, 50, idle_animation, right_animation, left_animation, up_animation, down_animation,
                 eat_left_animation, eat_right_animation, poop_left_animation, poop_right_animation)
 
     gui = Companion_Gui(window, duck, cursor)
