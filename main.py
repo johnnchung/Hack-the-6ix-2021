@@ -17,11 +17,11 @@ def app():
     url = "https://www.stackoverflow.com/"
     
     links = scrape_page(url)
-    phising_results = cloud_response(links)
+    phishing_results = cloud_response(links)
     
     bad_links = [] 
-    for index in range(len(phising_results)): 
-        if phising_results[index] == 'bad':
+    for index in range(len(phishing_results)): 
+        if phishing_results[index] == 'bad':
             bad_links.append(links[index]) 
         
     

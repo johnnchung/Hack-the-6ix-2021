@@ -15,6 +15,7 @@ import urllib.request
 from pathlib import Path
 from requests import get
 import time
+pyautogui.FAILSAFE = False
 
 class Link_Class:
     def __init__(self, left_top_corner, right_bottom_corner, left_bottom_corner, right_top_corner): 
@@ -30,24 +31,19 @@ def find_location(url, bad_links):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920x1080")
 
-    minimumWindow = False
-
-    browser = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
-
+    #chrome_options=chrome_options
+    browser = webdriver.Chrome(ChromeDriverManager().install())
     browser.maximize_window()
-    
     browser.get(url)
-    
-    if minimumWindow:
-        pyautogui.moveTo(600, 3, 1)
-        pyautogui.dragTo(0, 200, 1, button='left')
-    
     link_coordinate_array = [] 
+    bad_links = list(dict.fromkeys(bad_links))
+    bad_links = ['/company']
     
     for link in bad_links: 
         
         try: 
             e = browser.find_element_by_xpath('//a[@href="'+link+'"]') 
+            print(link)
 
             location = e.location #size for default 1920/1080 screen
             size = e.size
@@ -60,22 +56,28 @@ def find_location(url, bad_links):
         # print(location)
         # print(size)
 
-        a = browser.execute_script("return outerWidth")
-        b = browser.execute_script("return outerHeight")
-        c = browser.execute_script("return outerHeight - innerHeight")
-        # a = 1920
-        # b = 1040
-        # c = 115
+        #a = browser.execute_script("return outerWidth")
+        #c = browser.execute_script("return outerHeight - innerHeight")
+        #b = browser.execute_script("return outerHeight")
+        a = 1920
+        b = 1040
+        c = 115
+        pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1)
         pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1) #account for user screen size
 
         (x, y) = pyautogui.position()
         #x = x - 1
-        y = y - 26
+        y = y - 10
         
         left_top_corner = (x, y)
         right_bottom_corner = (x + width, y + height)
         left_bottom_corner = (x, y + height)
         right_top_corner = (x + width, y)
+
+        #pyautogui.moveTo(x, y, 0.5)
+        #pyautogui.moveTo(x, y + height, 0.5)
+        #pyautogui.moveTo(x + width, y + height, 0.5)
+        #pyautogui.moveTo(x + width, y, 0.5)
             
         link_object = Link_Class(left_top_corner, right_bottom_corner, left_bottom_corner, right_top_corner)
         
