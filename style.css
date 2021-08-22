@@ -102,6 +102,7 @@ body {
 }
 
 .profile img{
+    width: 30%;
     transition: .2s ease-in-out;
     margin-top: -350px;
     border-radius: 50%;
@@ -200,7 +201,13 @@ h3.heading{
     text-transform: uppercase;
     padding-bottom: .4rem;
 }
+.review {
+    background-color: white;
+}
 
+.experiences-img {
+    width: 30px;
+}
 .experiences p{
     font-size: 1.1rem;
 }
@@ -324,6 +331,7 @@ hr.socket {
     }
 
     .profile {
+        width: 30%;
         transform: scale(0.5, 0.5);
         -ms-transform: scale(0.5, 0.5);
         -webkit-transform: scale(0.5, 0.5);
