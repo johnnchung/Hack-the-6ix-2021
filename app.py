@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 import json
 import sys
 import requests
-import browserurl 
 import os
 from dotenv import load_dotenv
 

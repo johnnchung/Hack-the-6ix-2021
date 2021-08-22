@@ -2,6 +2,7 @@ import requests
 import pyautogui
 import pyperclip
 from bs4 import BeautifulSoup
+import json
 
 def scrape_page(url):
 
@@ -17,10 +18,25 @@ def scrape_page(url):
     html = BeautifulSoup(r.content, 'html.parser')
     links = []
     for a in html.find_all('a', href=True):
-        if ("http" in a['href']): 
+        if (not a['href'].startswith("#")):
+            if a['href'].startswith("https://"):
+                a['href'] = a['href'][8:]
+                
             links.append(a['href'])
-    print(links)
+            
+           
+    # json_format = json.dumps(links)
+    
+    return links
 
 
-scrape_page("website_here") 
+    # print(json_format)
+
+# scrape_page("https://stackoverflow.com") 
+
+# def remove_href(links): #to send to cloud functions
+#     for a in links: 
+#         a.removeprefix('https://')
+# print(json.dumps(links))
+# remove_href(links)
 

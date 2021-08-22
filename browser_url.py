@@ -1,5 +1,6 @@
 import pyautogui
 import pyperclip
+import keypress
 import time, threading
 from splinter import Browser
 from selenium import webdriver
@@ -13,10 +14,12 @@ def set_interval(func, sec):
     return t
 
 def searchLinks(): 
-    if __name__ == '__main__':
-        pyautogui.press('f6')
-        pyautogui.hotkey('ctrl', 'c')
-        pyautogui.press('f6')
+        # pyautogui.press('f6')
+        keyboard.press('f6')
+        keyboard.press('ctrl', 'c')
+        keyboard.press('f6')
+        # pyautogui.hotkey('ctrl', 'c')
+        # pyautogui.press('f6')
         url = pyperclip.paste()
         print(url)
 
