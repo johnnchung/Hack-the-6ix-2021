@@ -1,4 +1,6 @@
 from state import State
+import pyautogui
+import mouse
 
 WIDTH = 200
 HEIGHT = 220
@@ -65,9 +67,9 @@ class Duck:
         
         if self.event_number in [State.MOUSE_CONSTIPATION_LEFT_EVENT, State.MOUSE_CONSTIPATION_RIGHT_EVENT] and self.cycle == len(frames) - 1 and self.repetitions%3 == 2:
             if self.event_number == State.MOUSE_CONSTIPATION_LEFT_EVENT:
-                self.event_number = State.MOUSE_POOP_RIGHT_EVENT
-            else:
                 self.event_number = State.MOUSE_POOP_LEFT_EVENT
+            else:
+                self.event_number = State.MOUSE_POOP_RIGHT_EVENT
             self.digestion_stage = 2
             self.repetitions = 0
 
@@ -119,10 +121,12 @@ class Duck:
             self.pos_x += self.x_increment
             frame = self.right_anim[self.cycle]
             self.gif_work(self.right_anim, cursor_x, cursor_y)
+            mouse.move(cursor_x + DUCK_SPEED, cursor_y , absolute=True, duration = 0.01)
         elif self.check == 8:
             self.pos_x += self.x_increment
             frame = self.left_anim[self.cycle]
             self.gif_work(self.left_anim, cursor_x, cursor_y)
+            mouse.move(cursor_x - DUCK_SPEED, cursor_y, absolute=True, duration = 0.01)
         elif self.check == 9:
             frame = self.poop_left_anim[self.cycle]
             self.gif_work(self.poop_left_anim, cursor_x, cursor_y)
