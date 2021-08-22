@@ -160,7 +160,6 @@ class Duck:
         return frame
 
     def orientation(self, cursor_x, cursor_y, buffer):
-        print(self.disappear_X, self.disappear_Y)
         if self.event_number == State.WARNING_ANIMATION:
             self.x_increment = 0
             self.y_increment = 0
