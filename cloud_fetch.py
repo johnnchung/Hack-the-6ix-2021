@@ -8,12 +8,15 @@ load_dotenv()
 
 
 def cloud_response(links):
-    ENDPOINT = os.getenv('ENDPOINT')
-    
-    payload = {"features": links} 
-       
-    ml_response = requests.post(ENDPOINT, json=payload)
+    try:
+        ENDPOINT = os.getenv('ENDPOINT')
+        
+        payload = {"features": links} 
+        
+        ml_response = requests.post(ENDPOINT, json=payload)
 
-    phising_result = json.loads(ml_response.text)
-    
-    return phising_result["response"]
+        phishing_result = json.loads(ml_response.text)
+        
+        return phishing_result["response"]
+    except:
+        return None
