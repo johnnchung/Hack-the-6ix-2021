@@ -13,8 +13,9 @@ HEIGHT = 220
 WIDTH = 200
 
 class Companion_Gui:
-    def __init__(self, window, duck, cursor):
+    def __init__(self, window, pipeline, duck, cursor):
         self.window = window
+        self.pipeline = pipeline
         self.duck = duck
         self.cursor = cursor
         self.label = tk.Label(self.window, bd=0, bg='black')
@@ -29,10 +30,13 @@ class Companion_Gui:
 
     def update_frame(self):
         self.cursor.modify_position()
-        # self.detect_phishing()
+        links = self.pipeline.set_interval()
+        if links != None:
+            phising_link = self.pipeline.detect_phishing(links)
+            if phishing_link:
+                self.duck.on_hover(self.cursor)
         frame = self.duck.update_window(self.cursor.pos_x, self.cursor.pos_y)
         self.window.geometry(str(HEIGHT) + 'x' + str(WIDTH) + "+" + str(self.duck.pos_x) + '+' + str(self.duck.pos_y))
         self.label.configure(image=frame)
         self.label.pack()
         self.window.after(1, self.update_state)
-    

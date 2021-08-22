@@ -6,9 +6,9 @@ from gui.companion_gui import Companion_Gui
 from gui.cursor import Cursor
 from gui.duck import Duck
 import os
-    
+
 IM_PATH = os.getcwd() + "\\animations\\"
-    
+
 if __name__ == "__main__":
     window = tk.Tk()
     window.attributes("-topmost", True)
@@ -31,7 +31,6 @@ if __name__ == "__main__":
     duck = Duck(50, 50, idle_animation, right_animation, left_animation, up_animation, down_animation,
                 eat_left_animation, eat_right_animation, poop_left_animation, poop_right_animation)
 
-    gui = Companion_Gui(window, duck, cursor)
-
-    pipeline = Pipeline(5, gui)
-    pipeline.play()
+    pipeline = Pipeline(5, cursor)
+    gui = Companion_Gui(window, pipeline, duck, cursor)
+    gui.play()

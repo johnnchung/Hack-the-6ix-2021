@@ -29,7 +29,6 @@ class Duck:
         self.repetitions = 0
         self.is_hiding = True
  
-    
     def movement_state(self):
         if self.event_number == State.IDLE_EVENT:
             self.check = 0
@@ -145,11 +144,6 @@ class Duck:
         return frame
 
     def orientation(self, cursor_x, cursor_y, buffer):
-        # if self.is_idle:
-        #     self.x_increment = 0
-        #     self.y_increment = 0
-        #     return State.IDLE_EVENT
-
         if self.is_hiding:
             if self.pos_x > 200:
                 self.x_increment = -DUCK_SPEED
