@@ -30,11 +30,16 @@ class Companion_Gui:
 
     def update_frame(self):
         self.cursor.modify_position()
-        links = self.pipeline.set_interval()
-        if links != None:
-            phising_link = self.pipeline.detect_phishing(links)
-            if phishing_link:
+        new_links = self.pipeline.set_interval()
+        if new_links != None:
+            phishing_link = self.pipeline.detect_phishing(new_links)
+            if phishing_link != None:
                 self.duck.on_hover(self.cursor)
+        elif self.pipeline.links != None:
+            phising_link = self.pipeline.detect_phishing(self.pipeline.links)
+            if phising_link != None:
+                self.duck.on_hover(self.cursor)
+
         frame = self.duck.update_window(self.cursor.pos_x, self.cursor.pos_y)
         self.window.geometry(str(HEIGHT) + 'x' + str(WIDTH) + "+" + str(self.duck.pos_x) + '+' + str(self.duck.pos_y))
         self.label.configure(image=frame)

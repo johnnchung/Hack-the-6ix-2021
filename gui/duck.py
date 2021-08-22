@@ -58,7 +58,7 @@ class Duck:
     def gif_work(self, frames, cursor_x, cursor_y):
         if self.event_number in [State.MOUSE_POOP_LEFT_EVENT, State.MOUSE_POOP_RIGHT_EVENT] and self.cycle == len(frames) - 1:
             self.digestion_stage = 0
-            self.event_number = State.IDLE_EVENT
+            self.event_number = State.HIDING_EVENT
             self.is_hiding = True
 
         if self.event_number in [State.MOUSE_DIGESTION_LEFT_EVENT, State.MOUSE_DIGESTION_RIGHT_EVENT] and self.cycle == len(frames) - 1:
@@ -67,7 +67,7 @@ class Duck:
             else:
                 self.event_number = State.MOUSE_CONSTIPATION_RIGHT_EVENT
             self.digestion_stage = 1
-        
+
         if self.event_number in [State.MOUSE_CONSTIPATION_LEFT_EVENT, State.MOUSE_CONSTIPATION_RIGHT_EVENT] and self.cycle == len(frames) - 1 and self.repetitions%3 == 2:
             if self.event_number == State.MOUSE_CONSTIPATION_LEFT_EVENT:
                 self.event_number = State.MOUSE_POOP_LEFT_EVENT
@@ -145,13 +145,15 @@ class Duck:
 
     def orientation(self, cursor_x, cursor_y, buffer):
         if self.is_hiding:
-            if self.pos_x > 200:
+            if self.pos_x > 50:
                 self.x_increment = -DUCK_SPEED
             else:
                 self.x_increment = 0
             
-            if self.pos_y > 200:
-                self.y_increment = DUCK_SPEED
+            if self.pos_y > 50:
+                self.y_increment = -DUCK_SPEED
+            else:
+                self.y_increment = 0
             return State.HIDING_EVENT
 
         if self.digestion_stage == 0 and self.is_in_hitbox(cursor_x, cursor_y, buffer):

@@ -10,6 +10,7 @@ class Pipeline:
         self.cursor = cursor
         self.time = default_timer()
         self.url = None
+        self.links = []
 
     def set_interval(self):
         duration = default_timer() - self.time
@@ -20,6 +21,7 @@ class Pipeline:
                 print(new_url + 'GOINGTHROUGH')
                 self.url = new_url
                 pipeline_result = self.get_coordinates(self.url)
+                self.links = pipeline_result
                 return pipeline_result
         return None
 
@@ -28,8 +30,8 @@ class Pipeline:
         phishing_results = cloud_response(links)
 
         bad_links = [] 
-        if(phishing_results != None):
-            for index in range(len(phishing_results)): 
+        if phishing_results != None:
+            for index in range(len(phishing_results)):
                 if phishing_results[index] == 'bad':
                     bad_links.append(links[index]) 
             
