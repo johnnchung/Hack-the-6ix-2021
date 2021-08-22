@@ -53,6 +53,8 @@ class Duck:
             self.check = 9
         elif self.event_number == State.MOUSE_POOP_RIGHT_EVENT:
             self.check = 10
+        elif self.event_number == State.HIDING_EVENT:
+            self.check = 11
 
     def gif_work(self, frames, cursor_x, cursor_y):
         if self.event_number in [State.MOUSE_POOP_LEFT_EVENT, State.MOUSE_POOP_RIGHT_EVENT] and self.cycle == len(frames) - 1:
@@ -134,13 +136,28 @@ class Duck:
         elif self.check == 10:
             frame = self.poop_right_anim[self.cycle]
             self.gif_work(self.poop_right_anim, cursor_x, cursor_y)
+        elif self.check == 11:
+            self.pos_x += self.x_increment
+            self.pos_y += self.y_increment
+            frame = self.left_anim[self.cycle]
+            self.gif_work(self.left_anim, cursor_x, cursor_y)
         return frame
 
     def orientation(self, cursor_x, cursor_y, buffer):
-        if self.is_idle:
-            self.x_increment = 0
-            self.y_increment = 0
-            return State.IDLE_EVENT
+        # if self.is_idle:
+        #     self.x_increment = 0
+        #     self.y_increment = 0
+        #     return State.IDLE_EVENT
+
+        if self.is_hiding:
+            if self.pos_x > -100:
+                self.x_increment = -DUCK_SPEED
+            else:
+                self.x_increment = 0
+            
+            if self.pos_y > -100:
+                self.y_increment = DUCK_SPEED
+            return State.HIDING_EVENT
 
         if self.digestion_stage == 0 and self.is_in_hitbox(cursor_x, cursor_y, buffer):
             self.x_increment = 0
@@ -158,25 +175,25 @@ class Duck:
                 self.x_increment = -DUCK_SPEED
                 self.y_increment = 0
             return self.event_number
-        
+
         if self.digestion_stage == 2:
             self.x_increment = 0
             self.y_increment = 0
             return self.event_number
 
-        if cursor_x > self.pos_x + WIDTH + buffer and cursor_y < self.pos_y - buffer:
+        if cursor_x > self.pos_x + WIDTH + buffer and cursor_y < self.pos_y:
             self.x_increment = DUCK_SPEED
             self.y_increment = -DUCK_SPEED
             return State.RUN_RIGHT_EVENT
-        if cursor_x > self.pos_x + WIDTH + buffer and cursor_y > self.pos_y + HEIGHT + buffer:
+        if cursor_x > self.pos_x + WIDTH + buffer and cursor_y > self.pos_y + HEIGHT:
             self.x_increment = DUCK_SPEED
             self.y_increment = DUCK_SPEED
             return State.RUN_RIGHT_EVENT
-        if cursor_x < self.pos_x - buffer and cursor_y < self.pos_y - buffer:
+        if cursor_x < self.pos_x - buffer and cursor_y < self.pos_y:
             self.x_increment = -DUCK_SPEED
             self.y_increment = -DUCK_SPEED
             return State.RUN_LEFT_EVENT
-        if cursor_x < self.pos_x - buffer and cursor_y > self.pos_y + HEIGHT + buffer:
+        if cursor_x < self.pos_x - buffer and cursor_y > self.pos_y + HEIGHT:
             self.x_increment = -DUCK_SPEED
             self.y_increment = DUCK_SPEED
             return State.RUN_LEFT_EVENT
@@ -188,11 +205,11 @@ class Duck:
             self.x_increment = -DUCK_SPEED
             self.y_increment = 0
             return State.RUN_LEFT_EVENT
-        if cursor_y > self.pos_y + HEIGHT + buffer:
+        if cursor_y > self.pos_y + HEIGHT:
             self.x_increment = 0
             self.y_increment = DUCK_SPEED
             return State.RUN_DOWN_EVENT
-        if cursor_y < self.pos_y - buffer:
+        if cursor_y < self.pos_y:
             self.x_increment = 0
             self.y_increment = -DUCK_SPEED
             return State.RUN_UP_EVENT
@@ -200,7 +217,7 @@ class Duck:
         return State.IDLE_EVENT
 
     def is_in_hitbox(self, cursor_x, cursor_y, buffer):
-        if self.pos_x - buffer < cursor_x < self.pos_x + WIDTH + buffer and self.pos_y - buffer < cursor_y < self.pos_y + HEIGHT + buffer:
+        if self.pos_x - buffer < cursor_x < self.pos_x + WIDTH + buffer and self.pos_y < cursor_y < self.pos_y + HEIGHT:
             return True
         else:
             return False
