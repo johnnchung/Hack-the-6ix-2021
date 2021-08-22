@@ -32,11 +32,18 @@ class Companion_Gui:
 
     def update_frame(self):
         self.cursor.modify_position()
+        self.detect_phishing()
         frame = self.duck.update_window(self.cursor.pos_x, self.cursor.pos_y)
         self.window.geometry(str(HEIGHT) + 'x' + str(WIDTH) + "+" + str(self.duck.pos_x) + '+' + str(self.duck.pos_y))
         self.label.configure(image=frame)
         self.label.pack()
         self.window.after(1, self.update_state)
+    
+    def detect_phishing(self, linkArray):
+        for link in linkArray: 
+            if link.checkbox(cursor.pos_x, cursor.pos_y):
+                return link
+        return None
 
 if __name__ == "__main__":
     window = tk.Tk()
