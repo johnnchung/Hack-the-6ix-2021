@@ -33,15 +33,6 @@ def find_location(url, bad_links):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920x1080")
 
-<<<<<<< HEAD
-    #chrome_options=chrome_options
-    browser = webdriver.Chrome(ChromeDriverManager().install())
-    browser.maximize_window()
-    browser.get(url)
-    link_coordinate_array = [] 
-    bad_links = list(dict.fromkeys(bad_links))
-    bad_links = ['/company']
-=======
     minimumWindow = False
 
     browser = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
@@ -53,7 +44,6 @@ def find_location(url, bad_links):
     # if minimumWindow:
     #     pyautogui.moveTo(600, 3, 1)
     #     pyautogui.dragTo(0, 200, 1, button='left')
->>>>>>> a6b2456c78265fd707fb5fd0fcc58a2e6669eab8
     
     link_coordinate_array = [] 
 
@@ -70,7 +60,6 @@ def find_location(url, bad_links):
         except: 
             continue
 
-<<<<<<< HEAD
         #a = browser.execute_script("return outerWidth")
         #c = browser.execute_script("return outerHeight - innerHeight")
         #b = browser.execute_script("return outerHeight")
@@ -79,15 +68,6 @@ def find_location(url, bad_links):
         c = 115
         pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1)
         pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1) #account for user screen size
-=======
-        # a = browser.execute_script("return outerWidth")
-        # b = browser.execute_script("return outerHeight")
-        # c = browser.execute_script("return outerHeight - innerHeight")
-        a = 1920
-        b = 1040
-        c = 115
-        # pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1) #account for user screen size
->>>>>>> a6b2456c78265fd707fb5fd0fcc58a2e6669eab8
 
         (x, y) = (round(location['x']*1920/a), round((location['y'] + c)*1080/b)) # or floor
         #x = x - 1
