@@ -206,7 +206,9 @@ h3.heading{
 }
 
 .experiences-img {
-    width: 30px;
+    width: 300px;
+    float: left;
+    margin-right: 20px;
 }
 .experiences p{
     font-size: 1.1rem;
