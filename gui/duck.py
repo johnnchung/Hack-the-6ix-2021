@@ -26,6 +26,7 @@ class Duck:
         self.y_increment = 0
         self.digestion_stage = 0
         self.repetitions = 0
+        self.is_hiding = False
 
     def movement_state(self):
         if self.event_number == State.IDLE_EVENT:
@@ -131,8 +132,8 @@ class Duck:
             self.gif_work(self.poop_right_anim, cursor_x, cursor_y)
         return frame
 
-    def orientation(self, cursor_x, cursor_y, buffer, idle=False):
-        if idle:
+    def orientation(self, cursor_x, cursor_y, buffer):
+        if self.is_idle:
             self.x_increment = 0
             self.y_increment = 0
             return State.IDLE_EVENT
