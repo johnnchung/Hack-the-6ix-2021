@@ -19,10 +19,7 @@ class Companion_Gui:
         self.duck = duck
         self.cursor = cursor
         self.label = tk.Label(self.window, bd=0, bg='black')
-    
-    def mouse_disappear(self):
-        self.window1 = tk.Toplevel(self)
-        tk.config(cursor='none')
+        self.window1 = window1   
 
     def play(self):
         self.window.after(1, self.update_frame)
@@ -34,13 +31,21 @@ class Companion_Gui:
 
     def update_frame(self):
         self.cursor.modify_position()
-        links = self.pipeline.set_interval()
-        if links != None:
-            phishing_link = self.pipeline.detect_phishing(links)
+        new_links = self.pipeline.set_interval()
+        if new_links != None:
+            phishing_link = self.pipeline.detect_phishing(new_links)
             if phishing_link != None:
                 self.duck.on_hover(self.cursor)
+        elif self.pipeline.links != None:
+            phising_link = self.pipeline.detect_phishing(self.pipeline.links)
+            if phising_link != None:
+                self.duck.on_hover(self.cursor)
+
         frame = self.duck.update_window(self.cursor.pos_x, self.cursor.pos_y)
         self.window.geometry(str(HEIGHT) + 'x' + str(WIDTH) + "+" + str(self.duck.pos_x) + '+' + str(self.duck.pos_y))
+
+        self.window1.geometry("50x50" + '+' + str(self.duck.disappear_X - 40) + '+' + str(self.duck.disappear_Y))
         self.label.configure(image=frame)
         self.label.pack()
         self.window.after(1, self.update_state)
+        
