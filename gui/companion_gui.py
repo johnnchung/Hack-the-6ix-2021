@@ -32,8 +32,8 @@ class Companion_Gui:
         self.cursor.modify_position()
         links = self.pipeline.set_interval()
         if links != None:
-            phising_link = self.pipeline.detect_phishing(links)
-            if phishing_link:
+            phishing_link = self.pipeline.detect_phishing(links)
+            if phishing_link != None:
                 self.duck.on_hover(self.cursor)
         frame = self.duck.update_window(self.cursor.pos_x, self.cursor.pos_y)
         self.window.geometry(str(HEIGHT) + 'x' + str(WIDTH) + "+" + str(self.duck.pos_x) + '+' + str(self.duck.pos_y))

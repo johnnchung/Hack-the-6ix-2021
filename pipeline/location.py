@@ -24,8 +24,10 @@ class Link_Class:
         self.left_bottom = left_bottom_corner
         self.right_top = right_top_corner
 
-    def checkBox(self, cursor_x, cursor_y):
-        if(self.left_top[0] < cursor_x < self.right_top[0] and self.left_bottom[1] < cursor_y < self.left_top[1]):
+    def checkbox(self, cursor_x, cursor_y):
+        print(cursor_x, cursor_y, self.left_top[0], self.right_top[0], self.left_top[1], self.left_bottom[1])
+        if(self.left_top[0] < cursor_x < self.right_top[0] and self.left_top[1] < cursor_y < self.left_bottom[1]):
+            
             return True
         return False
         

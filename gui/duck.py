@@ -218,4 +218,5 @@ class Duck:
             return False
 
     def on_hover(self, cursor):
+        print ("Hi")
         self.is_hiding = False
