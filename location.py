@@ -17,6 +17,8 @@ from requests import get
 import time
 pyautogui.FAILSAFE = False
 
+from iteration_utilities import duplicates
+
 class Link_Class:
     def __init__(self, left_top_corner, right_bottom_corner, left_bottom_corner, right_top_corner): 
         self.left_top = left_top_corner
@@ -31,6 +33,7 @@ def find_location(url, bad_links):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920x1080")
 
+<<<<<<< HEAD
     #chrome_options=chrome_options
     browser = webdriver.Chrome(ChromeDriverManager().install())
     browser.maximize_window()
@@ -38,9 +41,23 @@ def find_location(url, bad_links):
     link_coordinate_array = [] 
     bad_links = list(dict.fromkeys(bad_links))
     bad_links = ['/company']
+=======
+    minimumWindow = False
+
+    browser = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+
+    browser.get(url)
     
+    browser.maximize_window()
+    
+    # if minimumWindow:
+    #     pyautogui.moveTo(600, 3, 1)
+    #     pyautogui.dragTo(0, 200, 1, button='left')
+>>>>>>> a6b2456c78265fd707fb5fd0fcc58a2e6669eab8
+    
+    link_coordinate_array = [] 
+
     for link in bad_links: 
-        
         try: 
             e = browser.find_element_by_xpath('//a[@href="'+link+'"]') 
             print(link)
@@ -52,10 +69,8 @@ def find_location(url, bad_links):
         
         except: 
             continue
-        
-        # print(location)
-        # print(size)
 
+<<<<<<< HEAD
         #a = browser.execute_script("return outerWidth")
         #c = browser.execute_script("return outerHeight - innerHeight")
         #b = browser.execute_script("return outerHeight")
@@ -64,8 +79,17 @@ def find_location(url, bad_links):
         c = 115
         pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1)
         pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1) #account for user screen size
+=======
+        # a = browser.execute_script("return outerWidth")
+        # b = browser.execute_script("return outerHeight")
+        # c = browser.execute_script("return outerHeight - innerHeight")
+        a = 1920
+        b = 1040
+        c = 115
+        # pyautogui.moveTo(location['x']*1920/a, (location['y'] + c)*1080/b, 0.1) #account for user screen size
+>>>>>>> a6b2456c78265fd707fb5fd0fcc58a2e6669eab8
 
-        (x, y) = pyautogui.position()
+        (x, y) = (round(location['x']*1920/a), round((location['y'] + c)*1080/b)) # or floor
         #x = x - 1
         y = y - 10
         
@@ -83,5 +107,5 @@ def find_location(url, bad_links):
         
         link_coordinate_array.append(link_object)
         print(link_object.left_top, link_object.right_top, link_object.left_bottom, link_object.right_bottom)
-        
+
     return link_coordinate_array

@@ -9,8 +9,7 @@ load_dotenv()
 
 def cloud_response(links):
     ENDPOINT = os.getenv('ENDPOINT')
-
-    # url = ["www.google.ca", "www.youtube.ca"] 
+    
     payload = {"features": links} 
        
     ml_response = requests.post(ENDPOINT, json=payload)
