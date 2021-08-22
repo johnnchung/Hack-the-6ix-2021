@@ -1,7 +1,7 @@
 from state import State
 
 WIDTH = 200
-HEIGHT = 200
+HEIGHT = 220
 DUCK_SPEED = 20
 
 
