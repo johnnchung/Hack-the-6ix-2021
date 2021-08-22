@@ -34,7 +34,6 @@ class Pipeline:
             for index in range(len(phishing_results)):
                 if phishing_results[index] == 'bad':
                     bad_links.append(links[index]) 
-            
             link_coordinate_array = find_location(url, bad_links) 
             return link_coordinate_array
         else:
